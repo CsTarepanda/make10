@@ -35,11 +35,11 @@ result = []
 for n in itertools.permutations(nums):
     for o in itertools.product(ops, repeat=length):
         for p in itertools.permutations(patterns, length):
-            if [o, n, p] in result: continue
             f = formula(o, n, p)
+            if f in result: continue
             try:
                 v = eval(f)
             except ZeroDivisionError: continue 
             if v != 10: continue
-            result.append([o, n, p])
+            result.append(f)
             print("%s = %s" % (f, v))
